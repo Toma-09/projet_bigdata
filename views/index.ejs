@@ -1,0 +1,30 @@
+<h2>Add customer</h2>
+<form method="POST" action="/customer/add">
+    <input type="text" name="nom" placeholder="Ajouter un nouveau nom"><br>
+    <input type="text" name="email" placeholder="Ajouter un nouvel email"><br>
+    <input type="text" name="rue" placeholder="Ajouter une nouvelle rue"><br>
+    <input type="text" name="ville" placeholder="Ajouter une nouvelle ville"><br>
+    <input type="text" name="département" placeholder="Ajouter un nouveau département"><br>
+    <input type="submit" value="submit">
+</form>
+
+<h2>Customers</h2>
+<ul>
+<% customers.forEach(function(customer){ %>
+    <li>
+        <strong><%= customer.value.name %></strong>
+        <%= customer.value.email %>
+        <ul>
+            <li>
+                <% if(customer.value.adresse.rue==""){ %>
+                    <%= %>
+                <% } else { %>
+                    <%= customer.value.adresse.rue %>
+                <% } %>    
+            </li>
+            <li><%= customer.value.adresse.ville %></li>
+            <li><%= customer.value.adresse.département %></li>
+        </ul>
+    </li>
+<% }); %>
+</ul>
