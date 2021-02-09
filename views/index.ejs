@@ -1,30 +1,44 @@
-<h2>Add customer</h2>
-<form method="POST" action="/customer/add">
+<h1 style="text-align: center;color:slategrey; font-family: 'Open Sans', sans-serif; margin-top: 1rem; font-size:2.5rem;"><u>Bienvenue sur l'application web de gestion de clients</u></h1>
+
+<hr style="width:80%; align-items: center; margin:4rem auto 4rem auto;">
+
+<!--Formulaire d'ajout d'un nouveau client-->
+
+<h2>Ajouter de nouvelles personnes</h2>
+<form method="POST" action="/clients/add" style="margin-left: 4rem;">
     <input type="text" name="nom" placeholder="Ajouter un nouveau nom"><br>
-    <input type="text" name="email" placeholder="Ajouter un nouvel email"><br>
-    <input type="text" name="rue" placeholder="Ajouter une nouvelle rue"><br>
-    <input type="text" name="ville" placeholder="Ajouter une nouvelle ville"><br>
-    <input type="text" name="département" placeholder="Ajouter un nouveau département"><br>
-    <input type="submit" value="submit">
+    <input type="text" name="prenom" placeholder="Ajouter un nouveau prénom"><br>
+    <input type="text" name="email" placeholder="Ajouter un email"><br>
+    <input type="text" name="adresse" placeholder="Ajouter une adresse"><br>
+    <input type="submit" value="Créer" style="margin-left:40px; margin-top:20px">
 </form>
 
-<h2>Customers</h2>
-<ul>
-<% customers.forEach(function(customer){ %>
+<!--Affichage de la liste de clients dans la base-->
+
+<h2>Liste des clients</h2>
+<ul style="display: flex;">
+<% clients.forEach(function(client){ %>
     <li>
-        <strong><%= customer.value.name %></strong>
-        <%= customer.value.email %>
+        <strong><%= client.value.nom %></strong> <%= client.value.prenom %>
         <ul>
-            <li>
-                <% if(customer.value.adresse.rue==""){ %>
-                    <%= %>
-                <% } else { %>
-                    <%= customer.value.adresse.rue %>
-                <% } %>    
-            </li>
-            <li><%= customer.value.adresse.ville %></li>
-            <li><%= customer.value.adresse.département %></li>
+            <li><%= client.value.email %></li>
+            <li><%= client.value.adresse %></li>
         </ul>
     </li>
+    <script language="JavaScript" type="text/javascript">
+        function goto_confirm(url)
+        {
+          if(confirm("Etes-vous sur de vouloir supprimer la base ? (Cela supprimera tous les éléments présents)")) document.location.href = url;
+          return false; //pour ne pas revenir au début de la page
+        }
+    </script>
+
+<!--Formulaire de suppression de la base-->
+
+    <form method="POST" action="/clients/del" style="margin-left: 4rem;">
+        <input type="submit" onclick="return goto_confirm('/')" value="Supprimer">
+        <input type="image" src="./del.png">
+    </form>
+    
 <% }); %>
 </ul>
