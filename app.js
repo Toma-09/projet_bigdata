@@ -17,6 +17,8 @@ const viewUrl = '_design/clients/_view/vue_client';
 
 //Si aucune base n'existe, on en créé une
 
+/*
+
 if(couch.listDatabases.rows == 0){
     couch.createDatabase(dbName).then(
         console.log("Base créée avec succès !"),
@@ -43,6 +45,8 @@ if(dbName.data.rows == 0){
     });
 }
 
+*/
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -65,6 +69,8 @@ app.get('/', function(req, res){
         });
 });
 
+/*
+
 app.post('/clients/del', function(req, res){
     couch.dropDatabase(dbName).then(
         console.log("Base de données supprimée avec succès")
@@ -73,6 +79,8 @@ app.post('/clients/del', function(req, res){
             res.send(err);
     });
 });
+
+*/
 
 //On récupère les informations entrées pour créer un nouveau client dans la base.
 
